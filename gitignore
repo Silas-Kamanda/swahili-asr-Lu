@@ -1,0 +1,36 @@
+# Model weights live on the Hugging Face Hub, never in git
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+merged-*/
+best_adapter/
+checkpoint-*/
+
+# Audio corpora — link to the Mozilla Common Voice and FLEURS releases instead
+*.mp3
+*.wav
+*.flac
+*.m4a
+clips/
+audio/
+
+# Run artifacts
+wandb/
+runs/
+eval_results/
+*.log
+
+# Credentials — never commit these
+.env
+*token*
+!**/tokenization*
+.huggingface/
+.netrc
+
+# Notebooks: outputs are stripped by nbstripout, but belt and braces
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/

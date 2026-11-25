@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Swahili ASR: parameter-efficient adaptation and speaker-aware evaluation of multilingual speech models"
+abstract: >-
+  Code and evaluation protocol for adapting multilingual Whisper models to Swahili with
+  quantized low-rank adaptation under constrained compute. Includes a speaker-aware
+  evaluation protocol that holds the model fixed and varies only the test set, measuring
+  held-out clips from training speakers, held-out speakers, and an out-of-corpus
+  benchmark separately, across model sizes from 244M to 1.55B parameters.
+type: software
+authors:
+  - family-names: Ireri
+    given-names: Salome
+    affiliation: "Laikipia University"
+    orcid: "https://orcid.org/0009-0009-3539-9596"
+  - family-names: Kibet
+    given-names: Alex
+    affiliation: "Laikipia University"
+    orcid: "https://orcid.org/0009-0007-5118-3352"
+  - family-names: Wataki
+    given-names: Silas Kamanda
+    affiliation: "Laikipia University"
+    orcid: "https://orcid.org/0009-0007-2128-6940"
+repository-code: "https://github.com/Silas-Kamanda/swahili-asr-Lu"
+license: Apache-2.0
+version: "0.1.0"
+date-released: "2026-11-25"
+keywords:
+  - automatic speech recognition
+  - Swahili
+  - low-resource languages
+  - parameter-efficient fine-tuning
+  - QLoRA
+  - Whisper
+  - speaker-disjoint evaluation
+
+

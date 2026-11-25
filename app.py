@@ -202,10 +202,17 @@ with gr.Blocks(title="Swahili ASR") as demo:
     )
 
 if __name__ == "__main__":
-    # ssr_mode=False: the server-side rendering path is experimental and is what the
-    # failing /api_info requests were serving. show_api=False drops the route the bug
-    # lives on entirely — nothing here needs a programmatic API.
+    # launch()'s signature moves between Gradio majors: 6 dropped show_api, and
+    # ssr_mode did not exist before 5. Neither is required — they were belt-and-braces
+    # against the gradio_client schema bug that _patch_gradio_client_bool_schema
+    # already handles — so ask the installed version what it accepts rather than
+    # pinning a version to match the code. A try/except is no good here: both kwargs
+    # raise the same TypeError, so a retry cannot tell which one was the problem.
+    import inspect
+
+    wanted = {"show_api": False, "ssr_mode": False}
     try:
-        demo.launch(show_api=False, ssr_mode=False)
-    except TypeError:           # older gradio without one of these kwargs
-        demo.launch(show_api=False)
+        accepted = set(inspect.signature(demo.launch).parameters)
+    except (TypeError, ValueError):                       # C-wrapped or unintrospectable
+        accepted = set()
+    demo.launch(**{k: v for k, v in wanted.items() if k in accepted})

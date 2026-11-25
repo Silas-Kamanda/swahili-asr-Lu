@@ -168,7 +168,9 @@ with gr.Blocks(title="Swahili ASR") as demo:
     with gr.Row():
         audio_in = gr.Audio(sources=["upload", "microphone"], type="filepath",
                             label="Swahili audio")
-        text_out = gr.Textbox(label="Transcription", lines=6, show_copy_button=True)
+        # No show_copy_button: Gradio 6 dropped the argument (the copy control is
+        # built into the component now). Passing it is a hard TypeError, not a warning.
+        text_out = gr.Textbox(label="Transcription", lines=6)
     gr.Button("Transcribe", variant="primary").click(transcribe, audio_in, text_out)
     audio_in.stop_recording(transcribe, audio_in, text_out)
 
